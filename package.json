@@ -1,0 +1,26 @@
+{
+  "name": "web-sockets",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node --watch backend.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitaliy-kro/web-sockets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vitaliy-kro/web-sockets/issues"
+  },
+  "homepage": "https://github.com/vitaliy-kro/web-sockets#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4",
+    "socket.io-client": "^4.5.4"
+  }
+}

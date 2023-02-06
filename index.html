@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <label for="user">User</label>
+      <input type="text" name="user" />
+      <label for="message">Message</label>
+      <input type="text" name="message" />
+
+      <button type="submit">Send</button>
+    </form>
+
+    <ul id="messages"></ul>
+    <script>
+      const ws = io();
+
+      ws.on("chatMessage", (message) => {
+        addMessage(message);
+      });
+
+      const form = document.getElementById("form");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const { user, message } = form.elements;
+        if (!message.value.trim()) {
+          return alert("Message cant be empty");
+        }
+
+        const messageText = `${user.value}: ${message.value}`;
+        ws.emit("chatMessage", messageText);
+        addMessage(messageText);
+        message.value = "";
+      });
+
+      function addMessage(message) {
+        const messages = document.getElementById("messages");
+
+        messages.insertAdjacentHTML("beforeend", `<li>${message}</li>`);
+      }
+    </script>
+  </body>
+</html>
